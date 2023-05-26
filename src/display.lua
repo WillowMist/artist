@@ -33,8 +33,8 @@ return function(context)
 
   local monitor = peripheral.find("monitor")
   local function redraw()
-    monitor.setTextColour(colours.black)
-    monitor.setBackgroundColour(colours.white)
+    monitor.setTextColour(colours.white)
+    monitor.setBackgroundColour(colours.green)
     monitor.clear()
 
     local used_slots, full_slots, total_slots = 0, 0, 0
@@ -56,16 +56,16 @@ return function(context)
       end
     end
 
-    widget.text { term = monitor, y = 2, text = ("Slots: %d/%d"):format(used_slots, total_slots) }
+    widget.text { bg = colours.green, fg = colours.white, term = monitor, y = 2, text = ("Slots: %d/%d"):format(used_slots, total_slots) }
     widget.bar  { term = monitor, y = 3, value = used_slots, max_value = total_slots }
 
-    widget.text { term = monitor, y = 5, text = ("Slots (full): %.1f/%d"):format(full_slots, total_slots) }
+    widget.text { bg = colours.green, fg = colours.white, term = monitor, y = 5, text = ("Slots (full): %.1f/%d"):format(full_slots, total_slots) }
     widget.bar  { term = monitor, y = 6, value = full_slots, max_value = total_slots }
 
     local hot_furnaces, cold_furnaces = 0, 0
     for _ in pairs(furnaces.hot_furnaces) do hot_furnaces = hot_furnaces + 1 end
     for _ in pairs(furnaces.cold_furnaces) do cold_furnaces = cold_furnaces + 1 end
-    widget.text { term = monitor, y = 9, text = ("Furnaces: %d/%d"):format(hot_furnaces, hot_furnaces + cold_furnaces) }
+    widget.text { bg = colours.green, fg = colours.white, term = monitor, y = 9, text = ("Furnaces: %d/%d"):format(hot_furnaces, hot_furnaces + cold_furnaces) }
     widget.bar  { term = monitor, y = 10, value = hot_furnaces, max_value = hot_furnaces + cold_furnaces }
   end
 
