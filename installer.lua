@@ -25,13 +25,14 @@ local files = {
   "artist/lib/turtle.lua",
   "artist/lib/widget.lua",
   "launch.lua",
+  "display.lua",
   "metis/input/keybinding.lua",
   "metis/string/fuzzy.lua",
 }
 local tasks = {}
 for i, path in ipairs(files) do
   tasks[i] = function()
-    local req, err = http.get("https://raw.githubusercontent.com/WillowMist/artist/vnext/" .. path)
+    local req, err = http.get("https://raw.githubusercontent.com/WillowMist/artist/vnext/src/" .. path)
     if not req then error("Failed to download " .. path .. ": " .. err, 0) end
 
     local file = fs.open(".artist.d/src/" .. path, "w")
